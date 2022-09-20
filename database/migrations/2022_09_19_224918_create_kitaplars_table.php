@@ -16,7 +16,12 @@ return new class extends Migration
         Schema::create('kitaplars', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->sti            $table->timestamps();
+            $table->string('selflink');
+            $table->integer('yazarid');
+            $table->string('image');
+            $table->double('fiyat');
+            $table->text('aciklama')->nullable();
+            $table->timestamps();
         });
     }
 
