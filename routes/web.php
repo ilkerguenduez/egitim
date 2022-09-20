@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\admin\indexController;
+use App\Models\YayinEvi;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\yayinevi\indexController as yayinEviIndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['namespace'=>'admin','prefix'=>'admin','as'=>'admin'],function(){
-    Route::get('/',[indexController::class,'index']);
+Route::group(['namespace'=>'admin','prefix'=>'admin','as'=>'admin.'],function(){
+    Route::get('/',[indexController::class,'index'])->name('index');
+
+
+    Route::group(['namespace'=>'yayinevi','prefix'=>'yayinevi','as'=>'yayinevi.'],function(){
+        Route::get('/',[yayinEviIndexController::class,'index'])->name('index');
+        Route::get('/ekle',[yayinEviIndexController::class,'create'])->name('create');
+        Route::post('/ekle',[yayinEviIndexController::class,'store'])->name('create.post');
+    });
 });
