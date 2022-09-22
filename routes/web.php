@@ -28,5 +28,8 @@ Route::group(['namespace'=>'admin','prefix'=>'admin','as'=>'admin.'],function(){
         Route::get('/',[yayinEviIndexController::class,'index'])->name('index');
         Route::get('/ekle',[yayinEviIndexController::class,'create'])->name('create');
         Route::post('/ekle',[yayinEviIndexController::class,'store'])->name('create.post');
+        Route::get('/duzenle{id}',[yayinEviIndexController::class,'edit'])->name('edit');
+        Route::post('/duzenle/{id}',[yayinEviIndexController::class,'update'])->name('edit.post');
+        Route::get('/sil{id}',[yayinEviIndexController::class,'delete'])->name('delete');
     });
 });

@@ -34,4 +34,15 @@ class indexController extends Controller
             return redirect()->back()->with('status','Yayın Evi Eklenemedi');
         }
     }
+
+    public function edit($id){
+        $c=YayinEvi::where('id','=',$id)->count();
+        if($c!=0){
+        $data=YayinEvi::where('id','=',$id)->first();
+        return view('admin.yayinevi.edit',['data'=>$data]);
+        }
+        else{
+            return abort(404);
+        }
+    }
 }

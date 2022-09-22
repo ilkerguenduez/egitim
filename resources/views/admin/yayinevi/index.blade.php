@@ -20,8 +20,8 @@
                                 @foreach ($data as $key => $value)
                                 <tr>
                                     <td>{{$value['name']}}</td>
-                                    <td>Düzenle</td>
-                                    <td>Sil</td>
+                                    <td><a href="{{route('admin.yayinevi.edit',['id'=>$value['id']])}}">Düzenle</a></td>
+                                    <td><a href="{{route('admin.yayinevi.delete',['id'=>$value['id']])}}">Sil</a></td>
                                 </tr>
                                 @endforeach
 
