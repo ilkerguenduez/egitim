@@ -4,11 +4,15 @@ namespace App\Http\Controllers\admin\yayinevi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Helper;
+use App\Helper\mHelper;
+use App\Models\YayinEvi;
 
 class indexController extends Controller
 {
     public function index(){
-        return view('admin.yayinevi.index');
+        $data=YayinEvi::paginate(10);
+        return view('admin.yayinevi.index',['data'=>$data]);
     }
 
 
@@ -19,6 +23,15 @@ class indexController extends Controller
 
     public function store(Request $request){
         $all=$request->except('_token');
-        dd($all);
+        $all['selflink']=mHelper::permalink($all['name']);
+
+        $insert = YayinEvi::create($all);
+
+        if($insert){
+            return redirect()->back()->with('status','Yayın Evi Başarı ile Eklendi');
+        }
+        else{
+            return redirect()->back()->with('status','Yayın Evi Eklenemedi');
+        }
     }
 }

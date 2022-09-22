@@ -4,6 +4,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+
+                @if(session("status"))
+                    <div class="alert-alert-primary" role="alert">
+                        {{session("status")}}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header" data-background-color="purple">
                         <h4 class="title">Yayin Evi Ekle</h4>

@@ -17,13 +17,18 @@
                                 <th>Sil</th>
                             </thead>
                             <tbody>
+                                @foreach ($data as $key => $value)
                                 <tr>
-                                    <td>Dakota Rice</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
+                                    <td>{{$value['name']}}</td>
+                                    <td>Düzenle</td>
+                                    <td>Sil</td>
                                 </tr>
+                                @endforeach
+
+                               
                             </tbody>
                         </table>
+                        {{$data->links()}}
                     </div>
                 </div>
             </div>
