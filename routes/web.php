@@ -32,4 +32,8 @@ Route::group(['namespace'=>'admin','prefix'=>'admin','as'=>'admin.'],function(){
         Route::post('/duzenle/{id}',[yayinEviIndexController::class,'update'])->name('edit.post');
         Route::get('/sil{id}',[yayinEviIndexController::class,'delete'])->name('delete');
     });
+
+    Route::group(['namespace'=>'yazar','prefix'=>'yazar','as'=>'yazar.'],function(){
+
+    });
 });
