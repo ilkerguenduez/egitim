@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('selflink');
             $table->integer('yazarid');
+            $table->integer('yayineviid');
             $table->string('image');
             $table->double('fiyat');
             $table->text('aciklama')->nullable();
