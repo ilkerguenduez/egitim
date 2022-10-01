@@ -42,10 +42,13 @@ class indexController extends Controller
     }
 
     public function edit($id){
+        
         $c=Kitaplar::where('id','=',$id)->count();
         if($c!=0){
+            $yazar=Yazarlar::all();
+            $yayinevi=YayinEvi::all();
             $data=Kitaplar::where('id','=',$id)->get();
-            return view('admin.kitap.edit',['data'=>$data]);
+            return view('admin.kitap.edit',['data'=>$data,'yazar'=>$yazar,'yayinevi'=>$yayinevi]);
 
         }
         else{
@@ -56,6 +59,35 @@ class indexController extends Controller
     public function update(Request $request){
         $id=$request->route('id');
         $c=Kitaplar::where('id','=',$id)->count();
-        if($c!=0){}
+        if($c!=0){
+            $data=Kitaplar::where('id','=',$id)->get();
+            $all =$request->except('_token');
+            $all['selflink']=mHelper::permalink($all['name']);
+            $all['image']=imageUpload::singleUploadUpdate(rand(1,90000),"kitap",$request->file('image'),$data,"image");
+            $update=Kitaplar::where('id','=',$id)->update($all);
+            if($update){
+                return redirect()->back()->with('status','başarılı');
+            }
+            else{
+                return redirect()->back()->with('statüs','başarısız');
+            }
+
+        }
+        else{
+            return abort(404);
+        }
+    }
+
+    public function delete($id){
+        $c=Kitaplar::where('id','=',$id)->count();
+        if($c!=0){
+            $data=Kitaplar::where('id','=',$id)->get();
+            File::delete('public/'.$data[0]['image']);
+            Kitaplar::where('id','=',$id)->delete();
+            return redirect()->back();
+        }
+        else{
+            return redirect('/');
+        }
     }
 }
