@@ -49,6 +49,17 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group label-floating is-empty">
+                                        <select name="kategoriid" class="form-control" id="">
+                                            @foreach ( $kategori as $key=>$value )
+                                                <option @if ($value['id']==$data[0]['kategoriid']) selected @endif value="{{ $value['id'] }}">{{ $value['name'] }}</option>
+                                            @endforeach
+                                        </select>
+                                    <span class="material-input"></span></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group label-floating is-empty">
                                         <select name="yayineviid" class="form-control" id="">
                                             @foreach ( $yayinevi as $key=>$value )
                                                 <option @if ($value['id']==$data[0]['yayineviid']) selected @endif value="{{ $value['id'] }}">{{ $value['name'] }}</option>

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('image');
             $table->double('fiyat');
             $table->text('aciklama')->nullable();
+            $table->integer('kategoriid');
             $table->timestamps();
         });
     }
